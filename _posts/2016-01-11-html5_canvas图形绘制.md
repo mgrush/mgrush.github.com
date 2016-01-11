@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ### Html5_canvas图形绘制
 
 #### 1. 绘制基本的图形：矩形

@@ -1,16 +1,26 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html>
+	 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-### 怎么在Node里实现一个类似php里的sleep()函数？
+  <title>Nodejs面试集锦</title>
+  <meta name="description" content="怎么在Node里实现一个类似php里的sleep()函数？function sleep( millSeconds ){	var startTime	= new Date().getTime();	while(new Date().getTime() &lt; startTime + millSeconds) {}}">
+
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+　　<body>
+		<div class="wrapper"><h3 id="nodephpsleep">怎么在Node里实现一个类似php里的sleep()函数？</h3>
 <pre>
 function sleep( millSeconds ){
 	var startTime	= new Date().getTime();
-	while(new Date().getTime() < startTime + millSeconds) {}
+	while(new Date().getTime() &lt; startTime + millSeconds) {}
 }
 </pre>
 
-### NodeJs 中的 Require 是阻塞还是非阻塞的？
+<h3 id="nodejs--require-">NodeJs 中的 Require 是阻塞还是非阻塞的？</h3>
 <pre>
 NodeJs 中的基本require方法的执行逻辑是下面这样的：
 1）声明一个NativeMethod方法类：
@@ -43,7 +53,7 @@ NativeMethod.prototype.compile	= function(){
 5）require方法第一次加载文件内容时使用的是fs.readFileSync方法（有待考究）
 </pre>
 
-### 写简单的http静态服务器
+<h3 id="http">写简单的http静态服务器</h3>
 <pre>
 //引入基本的模块
 var http	= require('http');
@@ -78,4 +88,7 @@ http.createServer(function(req, res){
 http.listen(3000);
 </pre>
 
-### 如何实现一个自定义的stream
+<h3 id="stream">如何实现一个自定义的stream</h3>
+</div>
+　　</body>
+</html>

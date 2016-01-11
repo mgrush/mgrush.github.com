@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Nodejs学习笔记</title>
+  <meta name="description" content="NodeJS">
+
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+　　<body>
+		<div class="wrapper"><h3 id="nodejs">NodeJS</h3>
+
+<h4 id="express"># Express</h4>
+<p>版本 4.2.0</p>
+
+<h4 id="redissession"># 使用Redis实现Session存储</h4>
+<p>参见 <a href="https://www.npmjs.com/package/express-session">express-session</a></p>
+
+<pre>
+var express		= require("express");
+var session		= require("express-session");
+var RedisStore	= require("connect-redis")(session);
+
+var app			= new express();
+
+app.use(session({
+	secret		: "mgrush",
+	store		: new RedisStore({
+		port	: 6379,
+		host	: "localhost"
+	})
+}));
+
+</pre>
+
+<h6 id="section">注释</h6>
+<p>这里最开始的时候，req.session打印出来的结果一直为 undefined ，卧槽， 最后检查出来的结果竟然是因为本机没有开启redis服务器，以下是redis启动方法：</p>
+<pre>
+cd /usr/local/redis-2.8.11/src
+./redis-server
+</pre>
+
+<h4 id="section-1"># 自动监视代码更新</h4>
+<p>由于NodeJs只有在第一次调用到某部分代码的时候才会对脚本进行解析，以后所有的访问都会直接访问内存，避免重复载入和解析。 这种做法虽然能够提高性能，但是对于开发调试却是很不方便， 所以为了每次代码都能够立即生效，而不是每次都重新启动node系统，我们可以安装 supervisor 来解决这个问题：</p>
+<pre>
+npm -g install supervisor
+</pre>
+
+<p>安装完成之后使用如下命令启动node服务：</p>
+<pre>
+supervisor ./bin/www
+</pre>
+
+<h4 id="mysql-"># Mysql 数据库</h4>
+<p>参见 <a href="https://www.npmjs.com/package/mysql">mysql</a></p>
+
+<p>首先安装mysql相关的插件支持：</p>
+<pre>
+npm install mysql
+</pre>
+
+<p>其次可通过如下方式连接数据库并进行相关的查询操作：</p>
+<pre>
+var mysql			= require("mysql");
+var connection		= mysql.createConnection({
+	host	: "localhost",
+	user	: "root",
+	password	: "123456",
+	database	: "mgrush",
+	port		: 3306
+});
+
+connect.query("SELECT * FROM USER WHERE name = ?", ["mgrush"], function(err, results, fields){
+	//do something;
+});
+
+//或者采用如下的方式
+connect.query({
+	sql		: "SELECT * FROM USER WHERE name = ?",
+	timeout	: 4000,
+	values	: ["mgrush"]
+}, function(err, results, fields){
+
+});
+</pre>
+
+<p>由于数据库查询采用的是回调的方式，所以大部分情况下，在业务层调用dao层的时候，都需要通过传递回调方法的方式来完成，如下：</p>
+<pre>
+function auth(callback) {
+	var connection	= require("util").getConnection();
+	
+	connection.query("SELECT * FROM user WHERE username = ?", ["mgrush"], function(err, data){
+		callback("", data[0]); 
+	});
+}
+</pre>
+
+<h4 id="less-css"># LESS CSS</h4>
+<p>使用less之前需要首先安装less插件：</p>
+<pre>
+npm install less-middleware --save
+</pre>
+
+<pre>
+var express			= require("express");
+var app				= express();
+var path			= require("path");
+var lessMiddleware	= require("less-middleware");
+
+app.use(lessMiddleware(path.join(__dirname + "../public/less", {
+	dest	: path.join(__dirname + "../public")
+})));
+
+app.use(express.static(path.join(__dirname, "../public")));
+</pre>
+<p>配置完上述代码之后，我们在请求 stylesheets/style.css文件的时候，系统会自动到public/less/stylesheets/style.less路径寻在对应的文件，并将编译好的css文件输出到public/stylesheets/style.css路径下；</p>
+
+<p>如果需要对less文件所在目录进行额外配置，则可以使用preprocess.path来完成，如下代码所示：</p>
+<pre>
+app.use(lessMiddleware(path.join(__dirname, "../public/less"), {
+	dest		: path.join(__dirname, "../public"),
+	path		: function(pathname, req){
+		return pathname.replace(path.seq + "stylesheets" + path.seq, seq);
+	}	
+}));
+</pre>
+
+<p>在path方法中的参数pathname的值其实是：/home/www/mgrush.me/public/less/stylesheets/style.less，为了保证最终映射到public/less/style.less文件，我们在path方法中替换了stylesheets目录。</p>
+
+<p>想实现上面的效果，也可以通过下面这种配置方式：</p>
+<pre>
+app.use(lessMiddleware("/less", {
+	dest		: "/stylesheets",
+	pathRoot	: path.join(__dirname, "/public")
+}));
+</pre>
+
+<h4 id="redis"># REDIS</h4>
+
+<p>参见 <a href="http://blog.csdn.net/yhl27/article/details/9936189">redis命令</a></p>
+
+<h6 id="redis-">Redis 使用方法</h6>
+<p>创建客户端：</p>
+<pre>
+	var client	= require("redis").createClient();
+</pre>
+
+<p>设置或者获取相关的数据：</p>
+<pre>
+	client.set("key", "val", redis.print);
+	client.hset("obj key", "key01", "val01", redis.print);
+	client.hset("obj key", "key02", "val02", redis.print);
+	client.hkeys("obj key", function(err, replies){
+		//返回obj key 下所有的key列表
+	});
+</pre>
+
+<p>高级应用：</p>
+<pre>
+	client.hmset("key", { name : "mgrush", age : 28 }, function(){});
+	//等效于
+	client.hmset("key", "name", "mgrush", "age", "28", function(){});
+	
+	//获取对象
+	client.hgetall("key", function(obj){
+		console.log(obj);
+	});
+</pre>
+
+<h6 id="section-2">发布与订阅</h6>
+<p>这里最简单的只需要了解 publish 以及 subscribe 两个方法即可实现数据的发布与订阅功能：</p>
+
+<h6 id="redis-1">Redis故障之后的数据恢复</h6>
+
+<h4 id="socketio"># Socket.io</h4>
+<p>参见 <a href="https://github.com/nswbmw/N-chat">NChat</a> 或者 <a href="https://github.com/nswbmw/N-chat/wiki/_pages">Socket.io</a></p>
+
+<p>安装socket.io支持：</p>
+<pre>
+npm install socket.io
+</pre>
+
+<p>Server端代码实现：</p>
+<pre>
+module.exports	= function(app){
+	var server	= require("http").createServer(app);
+	var io		= require("socket.io").listen(server);
+		
+	io.sockets.on("connection", function(socket){
+		socket.emit("connect", { passport : "mgrush" });
+		socket.on("event_init", { name : "mgrush" })
+	});
+
+	server.listen(5000);
+}
+</pre>
+
+<p>客户端代码</p>
+<pre>
+&lt;script type="text/javascript" src="/javascripts/lib/socket.io.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	var socket  = io.connect("http://localhost:5000");
+	socket.on("connect", function(data){
+		console.log(data);
+	});
+&lt;/script&gt;
+</pre>
+
+<p>其他相关方法：</p>
+
+<pre><code>socket.emit() ：向建立该连接的客户端广播
+
+socket.broadcast.emit() ：向除去建立该连接的客户端的所有客户端广播
+
+io.sockets.emit() ：向所有客户端广播，等同于上面两个的和
+</code></pre>
+
+<h6 id="section-3">常见问题：</h6>
+<ol>
+  <li>/socket.io/?EIO=3&amp;transport=polling&amp;t=1435304335933-4
+当时引起该问题的原因是因为浏览器端js在链接io的时候没有设置对应的端口号</li>
+</ol>
+
+<h4 id="section-4"># 异常处理</h4>
+<p>###### 同步异常
+处理所有的同步操作产生的异常，这个时候我们使用 try {} catch() {}异常捕获模块；</p>
+
+<h6 id="section-5">异步异常</h6>
+<p>异步回调产生的异常，这里有两种方法：</p>
+
+<ol>
+  <li>使用process来捕获所有的异常。</li>
+</ol>
+<pre>
+//如redis链接异常，输出的结果为：[Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED]
+process.on("uncaughtException", function(err){
+	console.log(err);
+});
+</pre>
+
+<ol>
+  <li>使用domain来捕获，这种方式尚未实际验证。</li>
+</ol>
+</div>
+　　</body>
+</html>

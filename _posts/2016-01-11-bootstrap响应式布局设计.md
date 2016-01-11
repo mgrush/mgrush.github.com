@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ### Bootstrap响应式布局设计
 
 原理：bootstrap使用css的媒体查询（css media query）来检测浏览器的窗体高度和宽度，然后根据条件加载和应用调整页面布局的样式表，根据浏览器视口的宽度，Bootstrap可以按照纵横比或宽度的范围来优化布局，但最主要还是使用min-width和max-width属性。

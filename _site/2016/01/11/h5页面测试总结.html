@@ -1,12 +1,22 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html>
+	 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-#### H5页面测试总结
+  <title>H5页面测试总结</title>
+  <meta name="description" content="H5页面测试总结">
 
-##### 1、业务逻辑相关
-　　除基本的功能测试之外，H5页面的测试，需要关注以下几点：
-　　<pre>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+　　<body>
+		<div class="wrapper"><h4 id="h5">H5页面测试总结</h4>
+
+<h5 id="section">1、业务逻辑相关</h5>
+<p>　　除基本的功能测试之外，H5页面的测试，需要关注以下几点：
+　　&lt;pre&gt;
 　　1.1 登陆
 　　目前H5与native各个客户端都做了互通，所以大家在测试的时候要注意两点：
 　　A、若客户端已登录，那么进入H5后仍然是登录状态。
@@ -30,17 +40,17 @@ layout: default
 　　B、请求成功，但data内容为空。
 　　C、请求接口异常，出现ERR_SID_INVALID::SESSION过期，拉起登录。
 　　D、请求接口发生除C中提到的异常之外的异常，通常可归结为一类进行处理。
-</pre>
+&lt;/pre&gt;</p>
 
-##### 2、H5适配相关
-　　H5的适配其实比客户端的相对来说，要少一些，手机品牌之间的差异不大，所以不用太多关注，最容易出现问题的是android2.3系统，这个要特别关注下：
+<h5 id="h5-1">2、H5适配相关</h5>
+<p>　　H5的适配其实比客户端的相对来说，要少一些，手机品牌之间的差异不大，所以不用太多关注，最容易出现问题的是android2.3系统，这个要特别关注下：</p>
 <pre>
 　　A、大屏（如720*1280，重点关注页面背景是否完全撑开页面，刷新是否有抖动）、小屏手机（如320*480，重点关注下弹框样式和文案折行）
 　　B、android2.3、android4.X随机找一个即可。
 　　C、ios5、ios6、ios7。
 </pre>
 
-##### 3、安全相关
+<h5 id="section-1">3、安全相关</h5>
 <pre>
 　　3.1 明确投放渠道都有哪些
 　　如独客、主客、wap，是否对未投放渠道做了限制，直接通过url请求是否拦截等
@@ -50,7 +60,7 @@ layout: default
 　　3.4 是否接入windvane，所有请求通过native发出。
 </pre>
 
-##### 4、体验相关
+<h5 id="section-2">4、体验相关</h5>
 <pre>
 　　4.1 资源相关
 　　A、页面中有图片的话，淘宝那边建议图片一般不大于50kb，本着一个原则，尽量缩小图片。
@@ -76,5 +86,8 @@ layout: default
 　　4.6 弱网络体验
 </pre>
 
-##### 5、埋点数据检查
-　　与BI、前端同学一起确认埋点情况。
+<h5 id="section-3">5、埋点数据检查</h5>
+<p>　　与BI、前端同学一起确认埋点情况。</p>
+</div>
+　　</body>
+</html>
