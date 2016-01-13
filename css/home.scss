@@ -1,0 +1,52 @@
+---
+##
+---
+
+@charset "utf-8";
+
+/**
+ * 字体大小设置
+ */
+$base-font-size:   16px;
+$base-font-weight: 400;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+/**
+ * 字体、边框、背景颜色
+ */
+$text-color: #333;
+$background-color: #f6f6f6;
+$brand-color: #2a7ae2;
+$border-color: #ccc;
+$color-white: #fff;
+
+/**
+ * Layout设置
+ */ 
+$header-height: 60px;
+$content-width: 800px;
+$content-padding: 16px;
+
+/**
+ * Post列表设置
+ */
+$list-item-height: 60px;
+
+/**
+ * 其它
+ */
+$px-unit: 4px;
+$spacing-unit:     30px;
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
+$on-palm:          600px;
+$on-laptop:        800px;
+$border-radius: 4px;
+
+@import 
+	"base", 
+	"layout",
+	"post-list";

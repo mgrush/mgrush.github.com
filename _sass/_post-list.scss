@@ -1,0 +1,16 @@
+.m-post-list {
+	margin: 0;
+	padding: 0;
+
+	.item {
+		border-radius: $border-radius;
+		padding: $content-padding / 2;
+		background-color: $color-white;
+		margin-bottom: $content-padding / 2;
+		border: 1px solid $border-color;
+
+		.title {
+			font-size: $base-font-size;
+		}
+	}
+}

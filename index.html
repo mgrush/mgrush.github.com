@@ -1,11 +1,27 @@
 ---
-layout: default
-title: 我的Blog
+title: Mgrush's Blog - 记录自己的步伐
 ---
-<h2>{{ page.title }}</h2>
-<p>最新文章</p>
-<ul>
-	{% for post in site.posts %}
-		<li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-	{% endfor %}
-</ul>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ page.title }}</title>
+		<link rel="stylesheet" href="{{"/css/home.css" | prepend: site.baseurl}}" />
+	</head>
+	<body>
+		{% include header.html %}
+
+		<section class="m-content">
+			<p>最新文章</p>
+			<ul class="m-post-list">
+				{% for post in site.posts %}
+				<li class="item">
+					<div class="title"><a href="{{site.baseurl}}{{post.url}}">{{ post.title }}</a></div>
+					<div class="excerpt">{{ post.experpt }}</div>
+				</li>
+				{% endfor %}
+			</ul>
+		</section>
+	</body>
+</html>
+
