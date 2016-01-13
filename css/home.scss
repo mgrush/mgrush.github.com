@@ -1,0 +1,165 @@
+---
+#
+---
+
+* {
+	box-sizing: border-box;
+}
+
+html, 
+body {
+	padding: 0;
+	margin: 0;
+}
+
+.m-header { // 页面顶部导航
+	height: 500px;
+	position: relative;
+	overflow: hidden;
+	background: url({{ site.baseurl }}/assets/header-bg.jpg) 0 0 no-repeat;
+	background-size: cover;
+
+	.left-part { // 导航栏左侧导航内容
+		height: 50px;
+		padding: 10px 80px;
+
+		a {
+			display: inline-block;
+			height: 30px;
+			line-height: 30px;
+			margin-right: 20px;
+			color: #FFF;
+			float: left;
+			text-decoration: none;
+
+			&.selected {
+				border-bottom: 1px solid #FFF;
+			}
+		}
+	}
+
+	.title { // 页面标题
+		font-size: 40px;
+		color: #FFF;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		margin: 120px auto 30px;
+	}
+
+	.search { // 页面搜索
+		width: 600px;
+		height: 50px;
+		line-height: 30px;
+		padding: 5px 10px;
+		background: rgba(200, 200, 200, .4);
+		border: 1px solid #ccc;
+		margin: 0 auto;
+		border-radius: 8px;
+
+		&:hover {
+			background: rgba(200, 200, 200, .6);
+		}
+
+		.search-input {
+			display: block;
+			width: 100%;
+			height: 100%;
+			background: transparent;
+			border: none;
+			outline: none;
+			font-size: 24px;
+			color: #333;
+		}
+	}
+}
+
+.m-category {
+	height: 110px;
+	width: 960px;
+	position: relative;
+	padding: 25px 0px;
+	text-align: center;
+	margin: 30px auto 10px auto;
+	border-top: 1px solid #DEDEDE;
+
+	&::before {
+		display: inline-block;
+		content: "博客类型分类";
+		color: #666;
+		position: absolute;
+		width: 160px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		background-color: #FFF;
+		top: -15px;
+		left: 50%;
+		margin-left: -80px;
+	}
+
+	.item {
+		color: #FFF;
+		margin: 0 10px;
+		text-decoration: none;
+		display: inline-block;
+		height: 60px;
+		line-height: 60px;
+		padding: 0px 10px;
+		border-radius: 8px;
+		background-color: rgba(120, 120, 120, .6);
+	}
+}
+
+.m-recommend {
+	width: 960px;
+	padding: 25px 0px;
+	position: relative;
+	margin: 10px auto;
+	border-top: 1px solid #DEDEDE;
+
+	&::before {
+		display: inline-block;
+		content: "近期推荐博客列表";
+		color: #666;
+		position: absolute;
+		width: 160px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		background-color: #FFF;
+		top: -15px;
+		left: 50%;
+		margin-left: -80px;
+	}
+
+	.item {
+		width: 220px;
+		min-height: 360px;
+		float: left;
+		margin: 10px;
+		border: 1px solid #DEDEDE;
+		border-radius: 4px;
+
+		img {
+			width: 100%;
+			height: auto;
+		}
+
+		.title {
+			display: block;
+			height: 30px;
+			line-height: 30px;
+			padding: 0px 10px;
+			color: #333;
+			text-decoration: none;
+		}
+
+		.expert {
+			color: #666;
+			font-size: 14px;
+			line-height: 20px;
+			padding: 10px;
+		}
+	}
+}
