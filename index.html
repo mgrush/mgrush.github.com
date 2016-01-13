@@ -1,27 +1,23 @@
 ---
-title: Mgrush's Blog - 记录自己的步伐
+layout: default
 ---
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>{{ page.title }}</title>
-		<link rel="stylesheet" href="{{"/css/home.css" | prepend: site.baseurl}}" />
-	</head>
-	<body>
-		{% include header.html %}
+<div class="home">
 
-		<section class="m-content">
-			<p>最新文章</p>
-			<ul class="m-post-list">
-				{% for post in site.posts %}
-				<li class="item">
-					<div class="title"><a href="{{site.baseurl}}{{post.url}}">{{ post.title }}</a></div>
-					<div class="excerpt">{{ post.experpt }}</div>
-				</li>
-				{% endfor %}
-			</ul>
-		</section>
-	</body>
-</html>
+  <h1 class="page-heading">Posts</h1>
 
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
+</div>
