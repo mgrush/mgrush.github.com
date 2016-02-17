@@ -2,7 +2,7 @@ baseurl: ""
 twitter_username: jekyllrb
 github_username:  jekyll
 email: programmer.mgrush@gmail.com
-title: "MGrush's Blog - 记录前行的脚步"
+title: "梅志涛的博客"
 
 markdown: kramdown
 kramdown:

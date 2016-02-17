@@ -1,23 +1,47 @@
 ---
-layout: default
+layout: home
 ---
 
-<div class="home">
+<header class="m-header">
+	<div class="left-part">
+		<a class="logo"></a>
+		<a class="selected" href="#">发现</a>
+		<a href="#">最新</a>
+	</div>
+	<div class="title">{{ site.title }}</div>
+	<div class="search">
+		<input type="text" class="search-input" />
+	</div>
+</header>
 
-  <h1 class="page-heading">Posts</h1>
+<section class="m-category">
+	<a class="item" href="#">前端设计模式</a>
+	<a class="item" href="#">NodeJS实现机制</a>
+	<a class="item" href="#">ReactJS & Native</a>
+	<a class="item" href="#">HBase数据管理</a>
+	<a class="item" href="#">Webpack项目构建</a>
+	<a class="item" href="#">组件化工具</a>
+</section>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
-</div>
+<section class="m-recommend">
+	<div class="item">
+		<img src="{{ site.baseurl }}/assets/demo.jpg" />
+		<a class="title" href="#">古今中外事</a>
+		<div class="expert">jeklly 的一个最好的特点是“关注 blog 本身”。这是指什么呢？简单的说就是写博客的过程被 铸造进了 jekyll 的功能中。你只需简单的管理你电脑中的一个文件夹下的文本文件就 可以写文章并方便的在线上发布。与繁琐的配置和维护数据库和基于网站的内容管理系统（cms）相比， 这是一个非常受欢迎的改变。</div>
+	</div>
+	<div class="item">
+		<img src="{{ site.baseurl }}/assets/demo.jpg" />
+		<a class="title" href="#">古今中外事</a>
+		<div class="expert">jeklly 的一个最好的特点是“关注 blog 本身”。这是指什么呢？简单的说就是写博客的过程被 铸造进了 jekyll 的功能中。你只需简单的管理你电脑中的一个文件夹下的文本文件就 可以写文章并方便的在线上发布。与繁琐的配置和维护数据库和基于网站的内容管理系统（cms）相比， 这是一个非常受欢迎的改变。</div>
+	</div>
+	<div class="item">
+		<img src="{{ site.baseurl }}/assets/demo.jpg" />
+		<a class="title" href="#">古今中外事</a>
+		<div class="expert">jeklly 的一个最好的特点是“关注 blog 本身”。这是指什么呢？简单的说就是写博客的过程被 铸造进了 jekyll 的功能中。你只需简单的管理你电脑中的一个文件夹下的文本文件就 可以写文章并方便的在线上发布。与繁琐的配置和维护数据库和基于网站的内容管理系统（cms）相比， 这是一个非常受欢迎的改变。</div>
+	</div>
+	<div class="item">
+		<img src="{{ site.baseurl }}/assets/demo.jpg" />
+		<a class="title" href="#">古今中外事</a>
+		<div class="expert">jeklly 的一个最好的特点是“关注 blog 本身”。这是指什么呢？简单的说就是写博客的过程被 铸造进了 jekyll 的功能中。你只需简单的管理你电脑中的一个文件夹下的文本文件就 可以写文章并方便的在线上发布。与繁琐的配置和维护数据库和基于网站的内容管理系统（cms）相比， 这是一个非常受欢迎的改变。</div>
+	</div>
+</section>
