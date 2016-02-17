@@ -56,5 +56,11 @@ var WaterFall = {
 };
 
 $(function(){
+	// 确保在只有少数post的情况下，footer能够置底显示
+	$(".m-content").css({
+		"min-height" : (window.screen.height / remUnit) - (6 + 20) + "rem"
+	});
+
+	// 初始化排版
 	WaterFall.init($(".m-posts"));
 });
