@@ -14,107 +14,18 @@ layout: home
 
 <section class="m-content">
 	<article class="m-posts">
+		{% for post in site.posts %}
 		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 1</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
+			<h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+			<a href="{{ post.url }}"><img src="{{ site.baseurl }}{{ post.poster }}" /></a>
+			<p>{{ post.experpt }}</p>
+			<div class="post-attrs">
+				<span class="author">{{ post.author }}</span>
+				<span class="views">456</span>
+				<span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
+			</div>
 		</section>
-
-		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 2</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-		</section>
-
-		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 3</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-		</section>
-
-		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 4</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-		</section>
-
-		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 5</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-		</section>
-
-		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 6</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-		</section>
-
-		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 1</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-		</section>
-
-		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 2</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-		</section>
-
-		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 3</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-		</section>
-
-		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 4</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-		</section>
-
-		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 5</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-		</section>
-
-		<section class="post-item pin">
-			<h3><a href="">每次旅行都是一次完美的生活体验 6</a></h3>
-			<img src="{{ site.baseurl }}/assets/sea-side.jpg" />
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-			<p>这是在三亚的一次旅行，我们一行。。。</p>
-		</section>
+		{% endfor %}
 	</article>
 
 	<aside class="m-sidebar">
