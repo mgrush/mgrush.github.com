@@ -17,8 +17,8 @@ function getColumnGap(){
 }
 
 /** 获取body的rem大小 **/
-function getClientWidth(){
-	return document.body.clientWidth / getRemUnit(); // rem
+function getContentWidth(){
+	return Math.min(document.body.clientWidth, $(".m-posts").width()) / getRemUnit(); // rem
 }
 
 /** 计算rem的单位大小**/
@@ -28,12 +28,12 @@ function getRemUnit(){
 
 /** 计算排版列数 **/
 function getColumnCount(){
-	return Math.floor((getClientWidth() - getColumnGap()) / getColumnWidth());
+	return Math.floor((getContentWidth() - getColumnGap()) / getColumnWidth());
 }
 
 /** 计算左侧开始位置 **/
 function getOffsetLeft() {
-	return (getClientWidth() - (columnWidth * columnCount + columnGap * (columnCount - 1))) / 2;
+	return (getContentWidth() - (columnWidth * columnCount + columnGap * (columnCount - 1))) / 2;
 }
 
 /** 初始化参数值 **/
