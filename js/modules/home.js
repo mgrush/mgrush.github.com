@@ -1,11 +1,50 @@
-/** 博客首页 **/
+/** 瀑布流排版实现参数 **/
+var columnWidth	= 0;
+var columnGap	= 0;	
+var remUnit		= 0;
+var columnCount	= 0;
+var offsetLeft	= 0;
+var modelArr	= [];
 
-/** 瀑布流排版实现 **/
-var columnCount	= 4;
-var columnWidth	= 30;	// rem
-var columnGap	= 1;	// rem
-var modelArr	= new Array(columnCount + 1).join("0").split("");	// 根据columnCount计算出来的默认值为0的数组
-var remUnit		= parseInt(document.defaultView.getComputedStyle(document.getElementsByTagName("html")[0]).fontSize);	// rem的大小设置
+/** 获取每一个pin的宽度 **/
+function getColumnWidth(){
+	return 30; // rem;
+}
+
+/** 获取pin之间的间隔 **/
+function getColumnGap(){
+	return 1; // rem;
+}
+
+/** 获取body的rem大小 **/
+function getClientWidth(){
+	return document.body.clientWidth / getRemUnit(); // rem
+}
+
+/** 计算rem的单位大小**/
+function getRemUnit(){
+	return parseInt(document.defaultView.getComputedStyle(document.getElementsByTagName("html")[0]).fontSize);	
+}
+
+/** 计算排版列数 **/
+function getColumnCount(){
+	return Math.floor((getClientWidth() - getColumnGap()) / getColumnWidth());
+}
+
+/** 计算左侧开始位置 **/
+function getOffsetLeft() {
+	return (getClientWidth() - (columnWidth * columnCount + columnGap * (columnCount - 1))) / 2;
+}
+
+/** 初始化参数值 **/
+function initColumnParams(){
+	columnWidth	= getColumnWidth();
+	columnGap	= getColumnGap();
+	remUnit		= getRemUnit();
+	columnCount	= getColumnCount();
+	offsetLeft	= getOffsetLeft();
+	modelArr	= new Array(columnCount + 1).join("0").split("");
+}
 
 var WaterFall = {
 	// 记录每列的高度
@@ -30,7 +69,7 @@ var WaterFall = {
 		});
 
 		this.columnLefts	= modelArr.map(function(item, index){
-			return index * (columnWidth + columnGap); // 单位：rem
+			return offsetLeft + index * (columnWidth + columnGap); // 单位：rem
 		});
 
 		this.render();
@@ -62,5 +101,12 @@ $(function(){
 	});
 
 	// 初始化排版
+	initColumnParams();
+	WaterFall.init($(".m-posts"));
+});
+
+$(window).on("resize", function(){
+	// 更新排版
+	initColumnParams();
 	WaterFall.init($(".m-posts"));
 });
