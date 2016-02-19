@@ -2,7 +2,7 @@
 layout: home
 ---
 
-<header class="m-header">
+<header class="m-header" id="m-header">
 	<div class="logo">梅志涛的博客</div>
 	<ul class="menu">
 		<li class="selected"><a href="#">首页</a></li>
@@ -12,8 +12,8 @@ layout: home
 	<input type="text" class="search" placeholder="搜索你想要的" />
 </header>
 
-<section class="m-content">
-	<article class="m-posts">
+<section class="m-content" id="m-content">
+	<article class="m-posts" id="m-posts">
 		{% for post in site.posts %}
 		<section class="post-item pin">
 			<h3><a href="{{ post.url }}" target="_blank">{{ post.title }}</a></h3>
@@ -33,12 +33,12 @@ layout: home
 		{% endfor %}
 	</article>
 
-	<aside class="m-sidebar">
+	<aside class="m-sidebar" id="m-sidebar">
 	</aside>
 
 </section>
 
-<footer class="m-footer">
+<footer class="m-footer" id="m-footer">
 	<div class="contacts">
 		<h3>联系我</h3>
 		<ul>
