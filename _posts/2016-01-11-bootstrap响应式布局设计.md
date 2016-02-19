@@ -3,7 +3,8 @@ layout: default
 date: 2016-01-11
 author: mgrush
 poster: /assets/sea-side.jpg
-experpt: "了解bootstrap是如何通过media query实现响应式布局设计的。"
+experpt: 了解bootstrap是如何通过media query实现响应式布局设计的。
+
 ---
 
 ### Bootstrap响应式布局设计
